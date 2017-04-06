@@ -1,13 +1,17 @@
 {
-    "name": "PersonalWebsite",
-    "version": "0.01",
-    "description": "Personal website for Daniel Chan, showcasing the projects and how to contact me.",
-    "main": "server.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js"
-    },
-    "author": "",
-    "license": "MIT",
-    "dependencies": {}
+  "name": "PersonalWebsite",
+  "version": "0.01",
+  "description": "Personal website for Daniel Chan, showcasing the projects and how to contact me.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "gulp": "^3.9.1"
+  }
 }
