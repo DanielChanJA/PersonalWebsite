@@ -1,0 +1,43 @@
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    !important;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    !important;
+}
+
+.raleway {
+    font-family: 'Raleway', sans-serif;
+    !important;
+}
+
+.roboto {
+    font-family: 'Roboto', sans-serif;
+    !important;
+}
+
+.landing {
+    height: 90%;
+    background-image: url(/img/backdrop.jpg);
+    background-position: center center;
+    background-size: cover;
+}
+
+.contact-landing {
+    height: 10%;
+    background-color: white;
+}
+
+.namecenter {
+    background: transparent;
+    color: #FFFFFF;
+}
+
+.img-circle {
+    padding-top: 5%;
+
+}
