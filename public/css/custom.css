@@ -21,7 +21,8 @@ p {
 }
 
 .landing {
-    height: 90%;
+    height: 100%;
+    width: 100%;
     background-image: url(/img/backdrop.jpg);
     background-position: center center;
     background-size: cover;
@@ -47,7 +48,6 @@ p {
 }
 
 .landingpage {
-    height: 100%;
 }
 
 #contactme {

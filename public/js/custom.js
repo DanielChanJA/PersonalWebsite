@@ -28,6 +28,10 @@ $(document).ready(function() {
     });
 
 
+    // Specific animations for About Me section.
+    $("#introduction").whenInViewport(function() {
+       $("#introduction").addClass("animated fadeInDown");
+    });
 
     $("#descriptionAbout").whenInViewport(function() {
         $("#descriptionAbout").addClass("animated slideInRight");
@@ -36,6 +40,28 @@ $(document).ready(function() {
     $("#profile-photo-div").whenInViewport(function() {
         $("#profile-photo-div").addClass("animated slideInLeft");
     });
+
+
+
+    // Specific animations for Project section.
+
+    $("#project-intro").whenInViewport(function() {
+        $("#project-intro").addClass("animated fadeInDown");
+    });
+
+    $("#burstvpn-card").whenInViewport(function() {
+        $("#burstvpn-card").addClass("animated slideInLeft");
+    });
+
+    $("#schedulr-card").whenInViewport(function() {
+        $("#schedulr-card").addClass("animated slideInUp");
+    });
+
+    $("#musie-card").whenInViewport(function() {
+        $("#musie-card").addClass("animated slideInRight");
+    });
+
+
 
 
 
