@@ -35,8 +35,8 @@
             </div>
 
             <div class="jumbotron text-center namecenter" style="background: transparent;">
-                <h1>Hi there! I'm Daniel Chan.</h1>
-                <h3>A <span id="js-rotating">PROGRAMMER, SINGAPOREAN, GOLFER, ENTREPRENEUR, WANNA-BE CHEF</span>.</h3>
+                <h1 class="animated pulse">Hi there! I'm Daniel Chan.</h1>
+                <h3>A <span id="js-rotating">PROGRAMMER, SINGAPOREAN, GOLFER, WANNA-BE CHEF</span>.</h3>
             </div>
             <div class="text-center namecenter" style="background: transparent;">
                 <h6>3rd Year Computer Science Specialist @ University of Toronto</h6>
@@ -45,21 +45,21 @@
 
     </div>
     <div class="contact-landing">
-        <div class="col-md-6 d-inline-block text-center "><a href="mailto:iam@danielchan.me"><i class="fa fa-envelope fa-3x" aria-hidden="true" style="color: black;"></i></a></div><div class="col-md-6 d-inline-block text-center"><i class="fa fa-phone fa-3x" aria-hidden="true" style="color: black"></i></div>
-        <div class="col-md-6 d-inline-block text-center"><a href="mailto:iam@danielchan.me" class="roboto" style="color: black;">iam@danielchan.me</a></div><div class="col-md-6 d-inline-block text-center"><span class="roboto">+1 (416)-831-6660</span></div>
+        <div class="col-md-6 d-inline-block text-center animated bounceInLeft"><a href="mailto:iam@danielchan.me" ><i class="fa fa-envelope fa-3x " aria-hidden="true" style="color: black;"></i></a></div><div class="col-md-6 d-inline-block text-center animated bounceInRight"><i class="fa fa-phone fa-3x" aria-hidden="true" style="color: black"></i></div>
+        <div class="col-md-6 d-inline-block text-center animated bounceInLeft"><a href="mailto:iam@danielchan.me" class="roboto" style="color: black;">iam@danielchan.me</a></div><div class="col-md-6 d-inline-block text-center animated bounceInRight"><span class="roboto">+1 (416)-831-6660</span></div>
     </div>
 </div>
 
 
 <div class="container aboutme" id="about-me">
 
-    <div class="jumbotron text-center" style="background: transparent;">
+    <div class="jumbotron text-center" style="background: transparent;" id="introduction">
         <h1>Let me introduce myself.</h1>
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-md-6">
-            <img src="/img/profile.png" class="img-fluid rounded" alt="Profile Photo" >
+        <div class="col-xs-12 col-md-6" id="profile-photo-div">
+            <img src="/img/profile.png" class="img-fluid" alt="Profile Photo" >
             <div class="row">
             <div class="col-md-4 d-inline-block text-center">
                 <a href="http://github.com/DanielChanJA"><i class="fa fa-github fa-3x" aria-hidden="true" style="color: black;"></i>
@@ -77,7 +77,7 @@
         </div>
 
         <div class="col-xs-12 col-md-6">
-            <p>
+            <p id="descriptionAbout">
                I'm currently a third year undergraduate student pursuing a Computer Science degree at the University of Toronto,
                 with a keen interest in both frontend and backend development.
                 <br>

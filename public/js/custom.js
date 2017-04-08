@@ -26,4 +26,18 @@ $(document).ready(function() {
             });
         } // End if
     });
+
+
+
+    $("#descriptionAbout").whenInViewport(function() {
+        $("#descriptionAbout").addClass("animated slideInRight");
+    });
+
+    $("#profile-photo-div").whenInViewport(function() {
+        $("#profile-photo-div").addClass("animated slideInLeft");
+    });
+
+
+
 });
+
