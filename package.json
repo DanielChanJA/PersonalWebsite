@@ -17,6 +17,7 @@
     "gulp": "^3.9.1",
     "jquery-smooth-scroll": "^2.1.2",
     "path": "^0.12.7",
-    "serve-favicon": "^2.4.2"
+    "serve-favicon": "^2.4.2",
+    "wowjs": "^1.1.3"
   }
 }
