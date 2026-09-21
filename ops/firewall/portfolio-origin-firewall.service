@@ -1,0 +1,13 @@
+[Unit]
+Description=Apply the portfolio origin default-deny ingress policy
+Wants=network-online.target tailscaled.service
+After=network-online.target tailscaled.service
+Before=apache2.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/apply-cloudflare-origin-firewall
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

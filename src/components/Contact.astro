@@ -1,0 +1,22 @@
+---
+import profile from "../data/profile.json";
+---
+
+<section class="section contact" id="contact">
+  <div class="contact-orb" aria-hidden="true"></div>
+  <div class="shell contact-inner reveal">
+    <p class="eyebrow eyebrow-dark"><span></span> Get in touch</p>
+    <h2>Have a hard problem?<br /><em>Let’s solve it.</em></h2>
+    <p class="contact-copy">I’m always glad to meet thoughtful people working on security, identity, and ambitious infrastructure.</p>
+    <a class="contact-email" href={`mailto:${profile.email}`}>
+      <span>{profile.email}</span>
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg>
+    </a>
+    <div class="contact-details">
+      <a href={`tel:${profile.phone.href}`}>{profile.phone.display}</a>
+      <span>{profile.location.short}</span>
+      <a href={profile.social.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>

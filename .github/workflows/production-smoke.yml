@@ -1,0 +1,44 @@
+name: Production smoke test
+
+on:
+  schedule:
+    - cron: "17 14 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify production surface
+        run: |
+          set -euo pipefail
+          smoke_dir="$(mktemp -d)"
+          trap 'rm -rf "$smoke_dir"' EXIT
+
+          curl --fail --silent --show-error --max-time 30 \
+            --dump-header "$smoke_dir/headers" \
+            --output "$smoke_dir/homepage" \
+            https://danielchan.me/
+
+          grep -q "CoreWeave" "$smoke_dir/homepage"
+          grep -q 'href="/llms.txt"' "$smoke_dir/homepage"
+          grep -q '"@type":"ProfilePage"' "$smoke_dir/homepage"
+          grep -qi '^content-security-policy:' "$smoke_dir/headers"
+          grep -qi '^cache-control:.*no-transform' "$smoke_dir/headers"
+          grep -qi '^strict-transport-security:' "$smoke_dir/headers"
+
+          redirect="$(curl --silent --show-error --output /dev/null --max-time 30 --write-out '%{redirect_url}' http://danielchan.me/)"
+          test "$redirect" = "https://danielchan.me/"
+
+          curl --fail --silent --show-error --max-time 30 --output "$smoke_dir/llms" https://danielchan.me/llms.txt
+          curl --fail --silent --show-error --max-time 30 --output "$smoke_dir/sitemap" https://danielchan.me/sitemap.xml
+          grep -q 'CoreWeave' "$smoke_dir/llms"
+          grep -q '<loc>https://danielchan.me/</loc>' "$smoke_dir/sitemap"
+
+          asset="$(grep -m 1 -o '/_astro/[^" ]*\.css' "$smoke_dir/homepage")"
+          test -n "$asset"
+          curl --fail --silent --show-error --output /dev/null --max-time 30 "https://danielchan.me$asset"

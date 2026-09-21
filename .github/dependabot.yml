@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      development-tooling:
+        patterns:
+          - "@astrojs/*"
+          - "@playwright/*"
+          - "@fontsource/*"
+          - "astro"
+          - "typescript"
+          - "vitest"
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

@@ -1,0 +1,7 @@
+[Unit]
+Description=Verify the portfolio origin certificate is not close to expiry
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/check-portfolio-origin-certificate

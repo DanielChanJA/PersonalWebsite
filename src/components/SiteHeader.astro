@@ -1,0 +1,27 @@
+---
+import profile from "../data/profile.json";
+
+const initials = profile.name.split(/\s+/).map((name) => name[0]).join("");
+---
+
+<header class="site-header" id="top">
+  <div class="shell nav-wrap">
+    <a class="brand" href="/" aria-label={`${profile.name}, home`}>
+      <span class="brand-mark">{initials}</span>
+      <span class="brand-name">{profile.name}</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Open navigation</span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="/#about">About</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#toolkit">Toolkit</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </div>
+</header>

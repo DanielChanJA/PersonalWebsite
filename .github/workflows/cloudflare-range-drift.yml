@@ -1,0 +1,32 @@
+name: Cloudflare origin-range drift
+
+on:
+  schedule:
+    - cron: "29 15 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Compare pinned ranges with Cloudflare
+        run: |
+          set -euo pipefail
+          range_dir="$(mktemp -d)"
+          trap 'rm -rf "$range_dir"' EXIT
+
+          curl --fail --silent --show-error https://www.cloudflare.com/ips-v4 | sort -u > "$range_dir/expected-v4"
+          curl --fail --silent --show-error https://www.cloudflare.com/ips-v6 | sort -u > "$range_dir/expected-v6"
+
+          sed -n '/^cloudflare_ipv4="$/,/^"$/p' ops/firewall/apply-cloudflare-origin.sh | sed '1d;$d;/^$/d' | sort -u > "$range_dir/pinned-v4"
+          sed -n '/^cloudflare_ipv6="$/,/^"$/p' ops/firewall/apply-cloudflare-origin.sh | sed '1d;$d;/^$/d' | sort -u > "$range_dir/pinned-v6"
+
+          diff -u "$range_dir/expected-v4" "$range_dir/pinned-v4"
+          diff -u "$range_dir/expected-v6" "$range_dir/pinned-v6"

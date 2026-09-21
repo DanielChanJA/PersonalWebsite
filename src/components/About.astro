@@ -1,0 +1,40 @@
+---
+import { experiences } from "../data/experience";
+import profile from "../data/profile.json";
+
+const companyList = new Intl.ListFormat("en", { style: "long", type: "conjunction" })
+  .format(experiences.map((experience) => experience.company));
+---
+
+<section class="section about" id="about">
+  <div class="shell about-layout">
+    <div class="section-heading reveal">
+      <p class="eyebrow eyebrow-dark"><span></span> A little about me</p>
+      <h2>Engineering at the intersection of <em>security</em> and scale.</h2>
+    </div>
+    <div class="about-copy reveal reveal-delay">
+      <p class="lead">
+        I’m a senior engineer specializing in security infrastructure, identity,
+        and access management. I like hard problems with real consequences: systems
+        that need to stay fast, observable, and secure as they grow.
+      </p>
+      <p>
+        My work spans zero-trust architecture, authorization platforms, cloud-native
+        infrastructure, and full-stack product engineering. Across {companyList}, I’ve led projects from the first design
+        conversation through dependable production operation.
+      </p>
+      <p>
+        Away from the terminal, you’ll usually find me on a golf course, a tennis court,
+        or making friends with an alpaca.
+      </p>
+      <div class="about-links">
+        <a href={profile.social.github} target="_blank" rel="noopener noreferrer">
+          GitHub <span aria-hidden="true">↗</span>
+        </a>
+        <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer">
+          LinkedIn <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

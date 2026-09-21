@@ -1,0 +1,51 @@
+---
+import { experiences } from "../data/experience";
+---
+
+<section class="section experience" id="experience">
+  <div class="shell">
+    <div class="section-top reveal">
+      <div>
+        <p class="eyebrow eyebrow-dark"><span></span> Career journey</p>
+        <h2>Experience</h2>
+      </div>
+      <p>Designing and delivering secure platforms across infrastructure, healthcare, commerce, and finance.</p>
+    </div>
+
+    <nav class="company-index reveal" aria-label="Companies">
+      {experiences.map((experience) => (
+        <a href={`#${experience.id}`}>{experience.company}</a>
+      ))}
+    </nav>
+
+    <div class="timeline">
+      {experiences.map((experience, index) => (
+        <section
+          class:list={["role", "reveal", { "role-featured": experience.current }]}
+          id={experience.id}
+          data-company={experience.company}
+        >
+          <div class="role-meta">
+            <p class="role-date">{experience.dates}</p>
+            {experience.current && <span class="current-pill">Current</span>}
+          </div>
+          <div class="role-main">
+            <div class="role-title">
+              <div>
+                <h3>{experience.company}</h3>
+                <p>{experience.role}</p>
+              </div>
+              <span class="role-number">{String(index + 1).padStart(2, "0")}</span>
+            </div>
+            <ul class="role-points">
+              {experience.bullets.map((bullet) => <li>{bullet}</li>)}
+            </ul>
+            <div class="tag-row">
+              {experience.tags.map((tag) => <span>{tag}</span>)}
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</section>

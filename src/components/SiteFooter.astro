@@ -1,0 +1,19 @@
+---
+import profile from "../data/profile.json";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <a class="brand footer-brand" href="/#top" aria-label="Back to top">
+      <span class="brand-mark">DC</span>
+      <span>{profile.name}</span>
+    </a>
+    <p>Designed and built with care. {year}</p>
+    <a class="back-to-top" href="/#top">
+      Back to top
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"></path></svg>
+    </a>
+  </div>
+</footer>

@@ -1,0 +1,142 @@
+---
+import "@fontsource/dm-mono/latin-400.css";
+import "@fontsource/dm-mono/latin-500.css";
+import "@fontsource/manrope/latin-400.css";
+import "@fontsource/manrope/latin-500.css";
+import "@fontsource/manrope/latin-600.css";
+import "@fontsource/manrope/latin-700.css";
+import "@fontsource/manrope/latin-800.css";
+import { getImage } from "astro:assets";
+import portrait from "../assets/daniel-and-alpaca.jpg";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { experiences } from "../data/experience";
+import profile from "../data/profile.json";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${profile.name} — ${profile.title}`,
+  description = profile.description
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const optimizedSocialImage = await getImage({
+  src: portrait,
+  width: 1200,
+  height: 630,
+  fit: "cover",
+  position: "center",
+  format: "jpeg",
+  quality: 82
+});
+const socialImage = new URL(optimizedSocialImage.src, Astro.site);
+const websiteId = new URL("/#website", Astro.site).toString();
+const personId = new URL("/#person", Astro.site).toString();
+const profilePageId = new URL("/#profile-page", Astro.site).toString();
+const currentRole = experiences.find((experience) => experience.current);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: profile.url,
+      name: `${profile.name}'s Portfolio`,
+      description: profile.description,
+      inLanguage: "en-US",
+      publisher: { "@id": personId }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": profilePageId,
+      url: canonicalUrl.toString(),
+      name: title,
+      description,
+      dateModified: profile.contentModifiedOn,
+      inLanguage: "en-US",
+      isPartOf: { "@id": websiteId },
+      mainEntity: { "@id": personId }
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: profile.name,
+      url: profile.url,
+      image: socialImage.toString(),
+      jobTitle: profile.title,
+      email: `mailto:${profile.email}`,
+      telephone: profile.phone.display,
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: profile.location.region,
+        addressCountry: profile.location.country
+      },
+      worksFor: currentRole
+        ? { "@type": "Organization", name: currentRole.company }
+        : undefined,
+      alumniOf: { "@type": "CollegeOrUniversity", name: "University of Toronto" },
+      knowsAbout: [
+        "Security Engineering",
+        "Identity and Access Management",
+        "Cloud Security",
+        "Platform Engineering",
+        "Infrastructure as Code",
+        "Kubernetes"
+      ],
+      sameAs: [profile.social.github, profile.social.linkedin]
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="author" content={profile.name} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#071d31" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site summary" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="me" href={profile.social.github} />
+    <link rel="me" href={profile.social.linkedin} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={`${profile.name}'s Portfolio`} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={`${profile.name}, ${profile.title}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={`${profile.name}, ${profile.title}`} />
+
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script src="../scripts/site.ts"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <SiteHeader />
+    <slot />
+    <SiteFooter />
+  </body>
+</html>

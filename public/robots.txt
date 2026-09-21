@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://danielchan.me/sitemap.xml
