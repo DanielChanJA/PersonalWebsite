@@ -13,6 +13,15 @@ updates:
           - "astro"
           - "typescript"
           - "vitest"
+    ignore:
+      # @astrojs/check currently supports TypeScript through major 6.
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-major
+      # Keep type declarations aligned with the pinned Node 24 LTS runtime.
+      - dependency-name: "@types/node"
+        update-types:
+          - version-update:semver-major
 
   - package-ecosystem: github-actions
     directory: /
