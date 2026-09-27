@@ -12,6 +12,10 @@ test("renders core content and navigation when JavaScript is disabled", async ({
   await expect(page.getByRole("heading", { name: "I build secure systems that scale." })).toBeVisible();
   await expect(page.getByRole("navigation", { name: "Main navigation" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Open navigation" })).toBeHidden();
+  const resumeHref = await page.getByRole("link", { name: "View résumé" }).getAttribute("href");
+  expect(resumeHref).toMatch(/^https:\/\/docs\.google\.com\/document\/d\/[A-Za-z0-9_-]+\/view$/);
+  await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Résumé" })).toHaveAttribute("href", resumeHref!);
+  await expect(page.getByRole("link", { name: "Let’s talk" })).toHaveAttribute("href", "mailto:iam@danielchan.me");
   await expect(page.locator("#coreweave")).toBeVisible();
 
   await context.close();
@@ -49,6 +53,7 @@ test("opens and closes the mobile menu accessibly", async ({ page }) => {
   await expect(toggle).toHaveAttribute("aria-expanded", "true");
   await expect(toggle).toHaveAccessibleName("Close navigation");
   await expect(page.getByRole("navigation", { name: "Main navigation" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Résumé" })).toBeVisible();
 
   await page.getByRole("link", { name: "Experience", exact: true }).click();
   await expect(page).toHaveURL(/#experience$/);

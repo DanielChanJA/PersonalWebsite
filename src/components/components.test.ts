@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import Contact from "./Contact.astro";
 import ExperienceSection from "./ExperienceSection.astro";
 import SiteHeader from "./SiteHeader.astro";
+import profile from "../data/profile.json";
 
 describe("portfolio components", () => {
   let container: AstroContainer;
@@ -43,6 +44,7 @@ describe("portfolio components", () => {
     expect(html).toContain('href="/#about"');
     expect(html).toContain('href="/#experience"');
     expect(html).toContain('href="/#toolkit"');
+    expect(html).toContain(`href="${profile.resumeUrl}"`);
     expect(html).toContain('href="/#contact"');
   });
 

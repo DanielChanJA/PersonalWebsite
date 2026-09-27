@@ -3,7 +3,7 @@
   "firstName": "Daniel",
   "title": "Senior Security Software Engineer",
   "description": "Daniel Chan is a Bay Area senior security software engineer building secure, scalable identity and infrastructure systems.",
-  "contentModifiedOn": "2026-09-20",
+  "contentModifiedOn": "2026-09-27",
   "email": "iam@danielchan.me",
   "phone": {
     "href": "+16503079260",
@@ -16,6 +16,7 @@
     "country": "US"
   },
   "url": "https://danielchan.me",
+  "resumeUrl": "https://docs.google.com/document/d/19YuS5yRJy5UO1_iEuIxSwzpLnRTScHgLdy1I9ZoBfbU/view",
   "social": {
     "github": "https://github.com/DanielChanJA",
     "linkedin": "https://linkedin.com/in/DanielChanJA"

@@ -5,6 +5,7 @@ describe("public profile data", () => {
   it("uses secure canonical and social URLs", () => {
     expect(new URL(profile.url).protocol).toBe("https:");
     expect(Object.values(profile.social).every((url) => new URL(url).protocol === "https:")).toBe(true);
+    expect(new URL(profile.resumeUrl).protocol).toBe("https:");
   });
 
   it("keeps contact links valid", () => {

@@ -39,6 +39,7 @@ ${roles}
 
 ## Public profiles
 
+- [Résumé](${profile.resumeUrl}): One-page résumé.
 - [GitHub](${profile.social.github}): Public code and engineering projects.
 - [LinkedIn](${profile.social.linkedin}): Professional profile.
 - [Email ${profile.firstName}](mailto:${profile.email}): Direct contact.

@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { renderLlmsTxt, renderSitemapXml } from "../lib/discovery";
+import profile from "../data/profile.json";
 
 function readProjectFile(path: string): string {
   return readFileSync(resolve(process.cwd(), path), "utf8");
@@ -43,6 +44,7 @@ describe("agent and design contracts", () => {
     expect(llms).toMatch(/^# Daniel Chan/m);
     expect(llms).toContain("https://danielchan.me/#coreweave");
     expect(llms).toContain("https://danielchan.me/#freshbooks");
+    expect(llms).toContain(profile.resumeUrl);
     expect(llms).not.toMatch(/(?:\d{1,3}\.){3}\d{1,3}|tailscale|private key/i);
     expect(layout).toContain('href="/llms.txt"');
     expect(layout).toContain('type="text/plain"');
@@ -55,7 +57,7 @@ describe("agent and design contracts", () => {
     expect(robots).toContain("User-agent: *\nAllow: /");
     expect(robots).toContain("Sitemap: https://danielchan.me/sitemap.xml");
     expect(sitemap).toContain("<loc>https://danielchan.me/</loc>");
-    expect(sitemap).toContain("<lastmod>2026-09-20</lastmod>");
+    expect(sitemap).toContain("<lastmod>2026-09-27</lastmod>");
   });
 
   it("uses the intentional Porsche-inspired blue palette", () => {

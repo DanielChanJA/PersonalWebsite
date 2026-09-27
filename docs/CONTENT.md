@@ -2,7 +2,7 @@
 
 ## Public profile
 
-`src/data/profile.json` is the single source for Daniel's name, title, description, contact details, location, canonical URL, GitHub, and LinkedIn.
+`src/data/profile.json` is the single source for Daniel's name, title, description, contact details, location, canonical URL, public résumé link, GitHub, and LinkedIn.
 
 Components and metadata import this file directly. Update the profile and its tests together; do not copy a changed email, phone number, title, or URL into individual components.
 
