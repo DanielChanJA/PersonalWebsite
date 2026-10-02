@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "astro": "^7.3.3"
+    "astro": "^7.3.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
@@ -26,7 +26,7 @@
     "@playwright/test": "^1.63.0",
     "@types/node": "^24.13.6",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.1"
+    "vitest": "^5.0.2"
   },
   "engines": {
     "node": ">=24.15.0"
